@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yokith Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #container {
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: calc(100% - 70px);
+            padding: 8px;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ol {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        li {
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>My List Yokith</h1>
+        <input type="text" id="itemInput" placeholder="Enter an item">
+        <button id="addButton" style="margin-top: 5px;">Add</button>
+        <ol id="itemList">
+            <!-- List items will be added here -->
+        </ol>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const itemInput = document.getElementById('itemInput');
+            const addButton = document.getElementById('addButton');
+            const itemList = document.getElementById('itemList');
+
+            addButton.addEventListener('click', addItemToList);
+            itemInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    addItemToList();
+                }
+            });
+
+            function addItemToList() {
+                const itemText = itemInput.value.trim(); // Get value and remove leading/trailing whitespace
+
+                if (itemText !== '') { // Only add if input is not empty
+                    const listItem = document.createElement('li');
+                    listItem.textContent = itemText;
+                    itemList.appendChild(listItem);
+                    itemInput.value = ''; // Clear the input field
+                    itemInput.focus(); // Set focus back to the input field
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
